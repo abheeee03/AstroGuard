@@ -11,7 +11,7 @@ import Image from "next/image";
 
 interface Scan {
   id: number;
-  image_url: string;
+  public_url: string;
   created_at: string;
   detection_count: number;
   detections: Array<{
