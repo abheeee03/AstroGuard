@@ -4,19 +4,24 @@ import Link from 'next/link'
 import React from 'react'
 
 function LandingPage() {
+
+  
+
+
   return (
     <>
     <NavBar/>
     <div className="min-h-screen w-full">
-    <div className='h-screen w-full gap-10 flex flex-col items-center justify-center'>
-  
-      <h3 className='border rounded-xl border-primary px-2'>Introducing</h3>
-      <h1 className='text-6xl font-bold'>Astro Guard</h1>
-      <Link href='/home' className='bg-sky-500 text-white rounded-xl px-2 py-2'>Start Detection</Link>
-      <div className="">
-        {/* <Image src='/earth.png' alt='earth' width={500} height={500}/> */}
+    <div className='h-screen overflow-hidden w-full gap-2 flex flex-col items-center justify-start'>
+      <h3 className='border rounded-xl text-sm border-primary px-2 mt-50'>Introducing</h3>
+      <div className="text-center">
+      <h1 className='text-8xl font-bold'>Astro Guard</h1>
+      <p className=' mt-2'>Best Maintenance Assistant and AI Based Safety Equipment Detection System</p>
       </div>
+      <Link href='/home' className='bg-sky-500 mt-5 text-white rounded-xl px-2 py-2'>Get Started</Link>
+        <Image src='/earth.png' alt='earth' className='rotating' width={700} height={700}/>
     </div>
+      
     </div>
     </>
   )

@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Model files
+yolov8s.pt
+
+# Training outputs
+runs/
+predictions/
+data/
+# Environment setups
+ENV_SETUP/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# VSCode or IDE configs (optional)
+.vscode/
+.idea/
