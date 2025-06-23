@@ -265,11 +265,11 @@ export default function DetectImage() {
   
   return (
     <>
-    <div className="container py-8 px-15 p-6">
+    <div className="py-8 px-25 p-6">
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
           <div>
-            <Link href="/home" className='flex items-center cursor-pointer gap-1 text-muted-foreground hover:text-primary transition-all duration-300'> <ArrowLeft size={18}/> Back</Link>
+            <Link href="/home" className='flex items-center mb-5 cursor-pointer gap-1 text-muted-foreground hover:text-primary transition-all duration-300'> <ArrowLeft size={18}/> Back</Link>
             <h1 className="text-3xl font-bold">Image Detection</h1>
             <p className="text-muted-foreground mt-1">Detect items from an image</p>
           </div>
