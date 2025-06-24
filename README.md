@@ -2,6 +2,14 @@
 
 AstroGuard is an advanced object detection system designed to identify and locate critical equipment in the International Space Station (ISS) environment. Using computer vision and FALCON AI by duality AI, the system can detect fire extinguishers, toolboxes, oxygen tanks, and other vital equipment in images.
 
+## Detailed Report
+
+- [Detailed Information of Model Training](https://drive.google.com/file/d/1ZTnfG7WOkH7ENyFE3ghk2wor01mcN-Ua/view?usp=sharing)
+
+## Demo Video
+- [Demo Video Of The Prototype](https://www.youtube.com/watch?v=YrEeXRXBT90)
+
+
 ## Overview
 
 AstroGuard helps astronauts and ground control maintain awareness of safety equipment locations aboard the ISS, ensuring quick access during emergencies and efficient inventory management.
@@ -12,7 +20,6 @@ AstroGuard helps astronauts and ground control maintain awareness of safety equi
 
 ## Documentation
 
-- [![Watch the video]](https://www.youtube.com/watch?v=YrEeXRXBT90)
 
 ## Architecture
 
@@ -87,13 +94,11 @@ AstroGuard/
     └── ...
 ```
 
-## License
-
-MIT
 
 ## Acknowledgements
 
+- [Duality AI](https://duality.ai) - For Everything 💝
 - [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) for the object detection model
 - [FastAPI](https://fastapi.tiangolo.com/) for the backend framework
-- [Next.js](https://nextjs.org/) and [React](https://reactjs.org/) for the frontend framework
+- [Next.js](https://nextjs.org/)
 - [Shadcn UI](https://ui.shadcn.com/) for the UI components 
