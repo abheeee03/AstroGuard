@@ -1,15 +1,52 @@
 # AstroGuard
 
-AstroGuard is an advanced object detection system designed to identify and locate critical equipment in the International Space Station (ISS) environment. Using computer vision and deep learning techniques, the system can detect fire extinguishers, toolboxes, oxygen tanks, and other vital equipment in images.
+AstroGuard is an advanced object detection system designed to identify and locate critical equipment in the International Space Station (ISS) environment. Using computer vision and FALCON AI by duality AI, the system can detect fire extinguishers, toolboxes, oxygen tanks, and other vital equipment in images.
 
-![AstroGuard](https://place-hold.it/800x400&text=AstroGuard&fontsize=30)
+## Overview
 
-## Project Overview
+AstroGuard helps astronauts and ground control maintain awareness of safety equipment locations aboard the ISS, ensuring quick access during emergencies and efficient inventory management.
 
-AstroGuard consists of two main components:
+- **Object Detection:** Powered by FALCON AI from duality AI, trained on specialized ISS equipment imagery
+- **Real-time Analysis:** Process live camera feeds or uploaded images
+- **Inventory Management:** Track available safety equipment quantities
 
-1. **Backend**: Python FastAPI server with YOLOv8 object detection model
-2. **Frontend**: Next.js web application with modern UI for image upload and visualization
+## Documentation
+
+- [![Watch the video]](https://www.youtube.com/watch?v=YrEeXRXBT90)
+
+## Architecture
+
+The system consists of two main components:
+
+1. **Backend:** Python-based FastAPI server with YOLOv8 object detection model
+2. **Frontend:** Next.js web application with modern UI for image upload and results visualization
+
+## Quick Start
+
+### Prerequisites
+- Python 3.8+
+- Node.js 16.8.0+
+
+### Backend Setup
+```bash
+cd backend
+python -m venv venv
+# On Windows
+venv\Scripts\activate
+# On macOS/Linux
+source venv/bin/activate
+pip install -r requirements.txt
+python api.py
+```
+
+### Frontend Setup
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Access the application at [http://localhost:3000](http://localhost:3000)
 
 ## Features
 
@@ -49,67 +86,6 @@ AstroGuard/
     │   └── ...
     └── ...
 ```
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.8+
-- Node.js 16.8.0+
-- npm or yarn
-
-### Setup and Installation
-
-1. **Clone the repository**:
-
-```bash
-git clone https://github.com/yourusername/AstroGuard.git
-cd AstroGuard
-```
-
-2. **Set up the backend**:
-
-```bash
-cd backend
-python -m venv venv
-# On Windows
-venv\Scripts\activate
-# On macOS/Linux
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-3. **Set up the frontend**:
-
-```bash
-cd ../frontend
-npm install
-```
-
-### Running the Application
-
-1. **Start the backend server**:
-
-```bash
-cd backend
-python api.py
-```
-
-2. **Start the frontend development server**:
-
-```bash
-cd frontend
-npm run dev
-```
-
-3. **Access the application** at [http://localhost:3000](http://localhost:3000)
-
-## Usage
-
-1. Navigate to the application in your web browser
-2. Upload an image containing ISS equipment
-3. Click "Detect Objects" to process the image
-4. View the detection results with highlighted equipment and confidence scores
 
 ## License
 

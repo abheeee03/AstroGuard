@@ -8,6 +8,7 @@ import { supabase } from "@/lib/supabase";
 import { log } from "console";
 import { Check, CheckLine, TicketCheck, ToggleRight, Calendar, Clock } from "lucide-react";
 import Image from "next/image";
+import { toast } from "sonner";
 
 interface Scan {
   id: number;
@@ -51,6 +52,22 @@ export default function Home(){
           setFireExtinguishers(extinguishers);
           setToolboxes(tools);
           setOxygenTanks(oxygen);
+          
+          // Check if any item is running low on stock
+          if (tools < 10) {
+            toast.warning("Toolboxes are running out of stock! Current quantity: " + tools);
+            toast.warning("Toolboxes are running out of stock! Current quantity: " + tools);
+          }
+          
+          if (oxygen < 10) {
+            toast.warning("Oxygen tanks are running out of stock! Current quantity: " + oxygen);
+            toast.warning("Oxygen tanks are running out of stock! Current quantity: " + oxygen);
+          }
+          
+          if (extinguishers < 10) {
+            toast.warning("Fire extinguishers are running out of stock! Current quantity: " + extinguishers);
+            toast.warning("Fire extinguishers are running out of stock! Current quantity: " + extinguishers);
+          }
         }
 
         // Fetch recent scans

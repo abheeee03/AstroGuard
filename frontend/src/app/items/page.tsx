@@ -8,7 +8,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner"
 import NavBar from '@/components/NavBar';
 import { supabase } from '@/lib/supabase';
-
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { useRouter } from 'next/navigation';
 
 type Item = {
   id: string;
@@ -21,7 +29,10 @@ function ItemsPage() {
   const [selectedItem, setSelectedItem] = useState<string>('Oxygen Tank');
   const [quantity, setQuantity] = useState<number>(1);
   const [loading, setLoading] = useState(true);
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentItem, setCurrentItem] = useState<Item | null>(null);
+  const [removeQuantity, setRemoveQuantity] = useState<number>(1);
+  const router = useRouter();
   useEffect(() => {
     // Fetch initial data
     fetchItems();
@@ -107,7 +118,6 @@ function ItemsPage() {
         if (error) {
           toast.error('Error updating item: ' + error.message);
         } else {
-          // Update local state immediately
           setItems(items.map(item => 
             item.id === itemId 
               ? { ...item, quantity: newQuantity } 
@@ -115,6 +125,42 @@ function ItemsPage() {
           ));
           toast.error(`Removed 1 ${itemName} from inventory.`);
         }
+      }
+    } catch (error) {
+      toast.error('An unexpected error occurred');
+    }
+  };
+  
+  const openItemModal = (item: Item) => {
+    setCurrentItem(item);
+    setRemoveQuantity(1);
+    setIsModalOpen(true);
+  };
+  
+  const handleMultiRemove = async () => {
+    if (!currentItem) return;
+    
+    try {
+      // Ensure we don't remove more than available
+      const quantityToRemove = Math.min(removeQuantity, currentItem.quantity);
+      const newQuantity = currentItem.quantity - quantityToRemove;
+      
+      const { error } = await supabase
+        .from('items')
+        .update({ quantity: newQuantity })
+        .eq('id', currentItem.id);
+      
+      if (error) {
+        toast.error('Error updating item: ' + error.message);
+      } else {
+        // Update local state immediately
+        setItems(items.map(item => 
+          item.id === currentItem.id 
+            ? { ...item, quantity: newQuantity } 
+            : item
+        ));
+        toast.error(`Removed ${quantityToRemove} ${currentItem.name}(s) from inventory.`);
+        setIsModalOpen(false);
       }
     } catch (error) {
       toast.error('An unexpected error occurred');
@@ -175,14 +221,18 @@ function ItemsPage() {
             </TableRow>
           ) : (
             items.map((item) => (
-              <TableRow key={item.id}>
+              <TableRow key={item.id} className="cursor-pointer hover:bg-muted/50" onClick={() => openItemModal(item)}>
                 <TableCell className="font-medium">{item.name}</TableCell>
                 <TableCell>{item.quantity}</TableCell>
                 <TableCell className="text-right">
                   <Button 
                     variant="destructive" 
                     size="sm"
-                    onClick={() => handleRemoveItem(item.id, item.name)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemoveItem(item.id, item.name);
+                    }}
+                    className='cursor-pointer'
                     disabled={item.quantity <= 0}
                   >
                     Remove
@@ -196,6 +246,45 @@ function ItemsPage() {
       </div>
     </div>
       </div>
+      
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Manage {currentItem?.name}</DialogTitle>
+            <DialogDescription>
+              Current quantity: {currentItem?.quantity}
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="py-4">
+            <label htmlFor="removeQuantity" className="block text-sm font-medium mb-2">
+              Quantity to remove:
+            </label>
+            <Input
+              id="removeQuantity"
+              type="number"
+              min="1"
+              max={currentItem?.quantity || 1}
+              value={removeQuantity}
+              onChange={(e) => setRemoveQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+              className="w-full"
+            />
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsModalOpen(false)}>
+              Cancel
+            </Button>
+            <Button 
+              variant="destructive" 
+              onClick={handleMultiRemove}
+              disabled={!currentItem || currentItem.quantity <= 0 || removeQuantity <= 0}
+            >
+              Remove Items
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

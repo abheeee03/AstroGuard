@@ -18,7 +18,7 @@ function LandingPage() {
       <h1 className='text-8xl font-bold'>Astro Guard</h1>
       <p className=' mt-2'>Best Maintenance Assistant and AI Based Safety Equipment Detection System</p>
       </div>
-      <Link href='/home' className='bg-sky-500 mt-5 text-white rounded-xl px-2 py-2'>Get Started</Link>
+      <Link href='/home' className='bg-sky-500 mt-5 text-white rounded-sm px-3 py-2'>Get Started</Link>
         <Image src='/earth.png' alt='earth' className='rotating' width={700} height={700}/>
     </div>
       
