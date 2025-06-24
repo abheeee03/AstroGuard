@@ -1,6 +1,6 @@
 # AstroGuard
 
-AstroGuard is an advanced object detection system designed to identify and locate critical equipment in the International Space Station (ISS) environment. Using computer vision and FALCON AI by duality AI, the system can detect fire extinguishers, toolboxes, oxygen tanks, and other vital equipment in images.
+AstroGuard is an advanced object detection system designed to identify and locate critical equipment in the International Space Station (ISS) environment. Using Yolov8 and FALCON by duality AI, the system can detect fire extinguishers, toolboxes, oxygen tanks, and other vital equipment in images and realtime.
 
 ## Detailed Report
 
